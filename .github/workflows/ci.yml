@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - '*'
+  schedule:
+    # everyday 10AM (UTC)
+    - cron: '0 10 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        java_version: [17]
+        os: [windows-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java_version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java_version }}
+          cache: 'gradle'
+
+      - name: Build with Gradle
+        run: ./gradlew build javadoc asciidoc
+
+  matrix-test:
+    name: Test on java ${{ matrix.java_version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        java_version: [17]
+        os: [windows-latest] # , macOS-latest (remove macOS as it is not stable for now) , ubuntu-latest (remove Ubuntu as Chrome 77 doesn't work
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java_version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java_version }}
+          cache: 'gradle'
+
+      - name: Build with Gradle
+        run: ./gradlew check
