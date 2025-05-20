@@ -159,11 +159,11 @@ public class WebSecurityBeanConfig {
     MetadataBLOBBasedTrustAnchorRepository metadataBLOBBasedTrustAnchorRepository(ObjectConverter objectConverter){
         X509Certificate mds3RootCertificate = mds3TestRootCertificate();
         MetadataBLOBProvider[] fidoMDS3MetadataBLOBProviders = Stream.of(
-                "https://mds3.fido.tools/execute/b64f714dd9efc2f7011fff6a208e8c170776c326a623788838e43e8c06dd4a4f",
-                "https://mds3.fido.tools/execute/c344a84746f6a0978d34cd060e4fab6347f9e86b92cc2adc89e7891a419709c6",
-                "https://mds3.fido.tools/execute/1680c9d899447608dd28eeb5779b70c5bdbdb5daef284f90496fc661975d37df",
-                "https://mds3.fido.tools/execute/8c7f6fa6e2d058fdef324c2ee435ef4332b968ad8b5a8721717601c100bfb929",
-                "https://mds3.fido.tools/execute/a90169bef3866ae087e16b22371721eb9cf1411dab197111807013ef4d8d53ec")
+                "https://mds3.fido.tools/execute/c07bd3496b28183272893889d9bcbb33586b1bafd8fae3c280db1a2cb9add47f",
+                "https://mds3.fido.tools/execute/566419b8ba11740fae9cd71508c16a6b77142f3230262f3cf34ac0f53e9f7f83",
+                "https://mds3.fido.tools/execute/8b86df43ae43a23f0506ea69e5a96a547cdc986811704ae8426deaf6c4b956dd",
+                "https://mds3.fido.tools/execute/573090d57715bef90d5820d8fa34a37cbd0fe1e0adb2176b32752f446942735d",
+                "https://mds3.fido.tools/execute/d0ebd63e86d8ab518eaa43d512f37151ce20f3a56f3c2c400f3dba86aa710472")
                 .map(url -> {
                     try{
                         FidoMDS3MetadataBLOBProvider fidoMDS3MetadataBLOBProvider = new FidoMDS3MetadataBLOBProvider(objectConverter, url, mds3RootCertificate);
