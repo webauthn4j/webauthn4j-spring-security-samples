@@ -18,7 +18,7 @@ buildscript {
     ext{
         //Plugins
         springBootVersion = '3.3.4'
-        sonarqubeVersion = '5.1.0.4882'
+        sonarqubeVersion = '7.2.2.6593'
         asciidoctorGradleVersion = "4.0.3"
 
         //Libraries
