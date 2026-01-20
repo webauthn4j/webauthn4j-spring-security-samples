@@ -1,0 +1,77 @@
+[versions]
+# Project versions
+webauthn4j-spring-security = "0.10.0.RELEASE"
+
+# Spring
+spring-boot = "3.3.4"
+spring-security = "6.0.2"
+
+# WebAuthn4J
+webauthn4j = "0.30.2.RELEASE"
+
+# Third-party libraries
+hibernate-validator = "8.0.1.Final"
+thymeleaf = "3.0.4.RELEASE"
+modelmapper = "3.2.6"
+log4jdbc = "0.2.7"
+
+# WebJars
+bootstrap = "5.3.8"
+jquery = "3.7.1"
+font-awesome = "7.1.0"
+webjars-locator = "0.52"
+
+# Test
+dbunit = "2.8.0"
+spring-test-dbunit = "1.3.0"
+webdrivermanager = "6.3.3"
+selenium = "4.40.0"
+
+# Plugins
+sonarqube = "7.2.2.6593"
+asciidoctor = "4.0.5"
+node-gradle = "7.1.0"
+
+[libraries]
+# Spring
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-security-bom = { module = "org.springframework.security:spring-security-bom", version.ref = "spring-security" }
+spring-boot-gradle-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring-boot" }
+
+# WebAuthn4J
+webauthn4j-util = { module = "com.webauthn4j:webauthn4j-util", version.ref = "webauthn4j" }
+webauthn4j-core = { module = "com.webauthn4j:webauthn4j-core", version.ref = "webauthn4j" }
+webauthn4j-metadata = { module = "com.webauthn4j:webauthn4j-metadata", version.ref = "webauthn4j" }
+webauthn4j-test = { module = "com.webauthn4j:webauthn4j-test", version.ref = "webauthn4j" }
+
+webauthn4j-spring-security-core = { module = "com.webauthn4j:webauthn4j-spring-security-core", version.ref = "webauthn4j-spring-security" }
+webauthn4j-spring-security-metadata = { module = "com.webauthn4j:webauthn4j-spring-security-metadata", version.ref = "webauthn4j-spring-security" }
+webauthn4j-spring-security-test = { module = "com.webauthn4j:webauthn4j-spring-security-test", version.ref = "webauthn4j-spring-security" }
+
+# Third-party libraries
+hibernate-validator = { module = "org.hibernate:hibernate-validator", version.ref = "hibernate-validator" }
+thymeleaf-testing = { module = "org.thymeleaf:thymeleaf-testing", version.ref = "thymeleaf" }
+modelmapper = { module = "org.modelmapper:modelmapper", version.ref = "modelmapper" }
+log4jdbc-remix = { module = "org.lazyluke:log4jdbc-remix", version.ref = "log4jdbc" }
+
+# WebJars
+webjars-bootstrap = { module = "org.webjars:bootstrap", version.ref = "bootstrap" }
+webjars-jquery = { module = "org.webjars:jquery", version.ref = "jquery" }
+webjars-font-awesome = { module = "org.webjars:font-awesome", version.ref = "font-awesome" }
+webjars-locator = { module = "org.webjars:webjars-locator", version.ref = "webjars-locator" }
+
+# Test
+dbunit = { module = "org.dbunit:dbunit", version.ref = "dbunit" }
+spring-test-dbunit = { module = "com.github.springtestdbunit:spring-test-dbunit", version.ref = "spring-test-dbunit" }
+webdrivermanager = { module = "io.github.bonigarcia:webdrivermanager", version.ref = "webdrivermanager" }
+selenium-java = { module = "org.seleniumhq.selenium:selenium-java", version.ref = "selenium" }
+
+# Plugins
+sonarqube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonarqube" }
+asciidoctor-gradle-jvm = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version.ref = "asciidoctor" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
+asciidoctor = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+node-gradle = { id = "com.github.node-gradle.node", version.ref = "node-gradle" }

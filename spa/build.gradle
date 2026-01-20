@@ -24,7 +24,7 @@ bootJar {
 }
 
 dependencies {
-    implementation('com.webauthn4j:webauthn4j-spring-security-core')
+    implementation(libs.webauthn4j.spring.security.core)
     implementation project(':lib:spa-angular-client')
 
     // Spring Framework
@@ -35,27 +35,27 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-cbor")
 
-    implementation("org.hibernate:hibernate-validator")
+    implementation(libs.hibernate.validator)
 
     //Others
     implementation("org.slf4j:jcl-over-slf4j")
-    implementation("org.modelmapper:modelmapper")
+    implementation(libs.modelmapper)
     implementation('org.flywaydb:flyway-core')
     runtimeOnly('com.h2database:h2')
     runtimeOnly('com.mysql:mysql-connector-j')
-    runtimeOnly("org.lazyluke:log4jdbc-remix")
+    runtimeOnly(libs.log4jdbc.remix)
 
     //Test
-    testImplementation('com.webauthn4j:webauthn4j-spring-security-test')
+    testImplementation(libs.webauthn4j.spring.security.test)
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
     testImplementation('junit:junit')
     testImplementation('org.mockito:mockito-core')
     testImplementation('org.assertj:assertj-core')
-    testImplementation("org.dbunit:dbunit")
-    testImplementation("com.github.springtestdbunit:spring-test-dbunit")
-    testImplementation("io.github.bonigarcia:webdrivermanager")
-    testImplementation("org.seleniumhq.selenium:selenium-java")
+    testImplementation(libs.dbunit)
+    testImplementation(libs.spring.test.dbunit)
+    testImplementation(libs.webdrivermanager)
+    testImplementation(libs.selenium.java)
 
 }
 
