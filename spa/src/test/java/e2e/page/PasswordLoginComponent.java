@@ -18,13 +18,19 @@ package e2e.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class PasswordLoginComponent {
 
     private final WebDriver webDriver;
+    private final WebDriverWait wait;
 
     public PasswordLoginComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
+        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
     }
 
     public void navigate() {
@@ -40,10 +46,12 @@ public class PasswordLoginComponent {
     }
 
     public void clickLogin() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("login")));
         webDriver.findElement(By.id("login")).click();
     }
 
     public void clickFastLogin() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("fast-login")));
         webDriver.findElement(By.id("fast-login")).click();
     }
 

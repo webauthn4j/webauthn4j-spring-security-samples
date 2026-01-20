@@ -62,6 +62,7 @@ public class RegistrationAndAuthenticationE2ETest {
     public void setupTest() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless=new");
+        chromeOptions.addArguments("--window-size=1920,1080");
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -87,7 +88,7 @@ public class RegistrationAndAuthenticationE2ETest {
         signupComponent.setFirstname("John");
         signupComponent.setLastname("Doe");
         signupComponent.setUsername("john.doe@example.com");
-        signupComponent.setPassword("password");
+        signupComponent.setPassword("dummyp@ssw0rd!");
         signupComponent.clickAddAuthenticator();
         signupComponent.getResidentKeyRequirementDialog().clickNo();
         signupComponent.waitRegisterClickable();
@@ -99,7 +100,7 @@ public class RegistrationAndAuthenticationE2ETest {
         // Password authentication
         PasswordLoginComponent passwordLoginComponent = new PasswordLoginComponent(driver);
         passwordLoginComponent.setUsername("john.doe@example.com");
-        passwordLoginComponent.setPassword("password");
+        passwordLoginComponent.setPassword("dummyp@ssw0rd!");
         passwordLoginComponent.clickLogin();
 
         // 2nd-factor authentication
