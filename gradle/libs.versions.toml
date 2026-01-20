@@ -10,7 +10,7 @@ spring-security = "6.0.2"
 webauthn4j = "0.30.2.RELEASE"
 
 # Third-party libraries
-hibernate-validator = "8.0.1.Final"
+hibernate-validator = "8.0.3.Final"
 thymeleaf = "3.0.4.RELEASE"
 modelmapper = "3.2.6"
 log4jdbc = "0.2.7"
