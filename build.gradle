@@ -28,7 +28,7 @@ buildscript {
         thymeleafVersion = '3.0.4.RELEASE'
         modelMapperVersion = '3.2.6'
 
-        bootstrapVersion = '5.3.3'
+        bootstrapVersion = '5.3.8'
         jqueryVersion = '3.7.1'
         fontAwesomeVersion = '7.1.0'
         webjarsLocatorVersion = '0.52'
