@@ -24,7 +24,7 @@ bootJar {
 }
 
 dependencies {
-    implementation('com.webauthn4j:webauthn4j-spring-security-core')
+    implementation(libs.webauthn4j.spring.security.core)
 
     // Spring Framework
     implementation('org.springframework.boot:spring-boot-starter-web')
@@ -33,28 +33,28 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-cbor")
 
-    implementation("org.hibernate:hibernate-validator")
+    implementation(libs.hibernate.validator)
 
     //Others
     implementation("org.slf4j:jcl-over-slf4j")
     implementation('ch.qos.logback:logback-classic')
     implementation('jakarta.xml.bind:jakarta.xml.bind-api')
     implementation('org.thymeleaf:thymeleaf-spring6')
-    implementation('org.webjars:bootstrap:5.3.8')
-    implementation('org.webjars:jquery:3.7.1')
-    implementation('org.webjars:font-awesome:7.1.0')
-    implementation('org.webjars:webjars-locator:0.52')
+    implementation(libs.webjars.bootstrap)
+    implementation(libs.webjars.jquery)
+    implementation(libs.webjars.font.awesome)
+    implementation(libs.webjars.locator)
 
 
     //Test
-    testImplementation('com.webauthn4j:webauthn4j-spring-security-test')
+    testImplementation(libs.webauthn4j.spring.security.test)
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
     testImplementation('junit:junit')
     testImplementation('org.mockito:mockito-core')
     testImplementation('org.assertj:assertj-core')
-    testImplementation("io.github.bonigarcia:webdrivermanager")
-    testImplementation("org.seleniumhq.selenium:selenium-java")
+    testImplementation(libs.webdrivermanager)
+    testImplementation(libs.selenium.java)
 
 }
 

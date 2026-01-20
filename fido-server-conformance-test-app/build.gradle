@@ -24,8 +24,8 @@ bootJar {
 }
 
 dependencies {
-    implementation('com.webauthn4j:webauthn4j-spring-security-core')
-    implementation('com.webauthn4j:webauthn4j-spring-security-metadata')
+    implementation(libs.webauthn4j.spring.security.core)
+    implementation(libs.webauthn4j.spring.security.metadata)
 
     // Spring Framework
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -37,16 +37,16 @@ dependencies {
 
     //Others
     implementation("org.slf4j:jcl-over-slf4j")
-    implementation("org.modelmapper:modelmapper")
+    implementation(libs.modelmapper)
     implementation('org.flywaydb:flyway-core')
     runtimeOnly('com.h2database:h2')
     runtimeOnly('com.mysql:mysql-connector-j')
-    runtimeOnly("org.lazyluke:log4jdbc-remix")
+    runtimeOnly(libs.log4jdbc.remix)
 
     //Test
     testImplementation('org.projectlombok:lombok')
 
-    testImplementation('com.webauthn4j:webauthn4j-spring-security-test')
+    testImplementation(libs.webauthn4j.spring.security.test)
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
@@ -54,8 +54,8 @@ dependencies {
     testImplementation('junit:junit')
     testImplementation('org.mockito:mockito-core')
     testImplementation('org.assertj:assertj-core')
-    testImplementation("org.dbunit:dbunit")
-    testImplementation("com.github.springtestdbunit:spring-test-dbunit")
+    testImplementation(libs.dbunit)
+    testImplementation(libs.spring.test.dbunit)
 
 }
 
