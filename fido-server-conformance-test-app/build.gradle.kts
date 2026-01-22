@@ -14,23 +14,26 @@
  * limitations under the License.
  */
 
-apply plugin: 'org.springframework.boot'
+plugins {
+    id("org.springframework.boot")
+}
 
-group 'com.webauthn4j'
+group = "com.webauthn4j"
 description = "WebAuthn4J Spring Security Angular Sample"
 
-bootJar {
-    archiveFileName = "fido-server-conformance-test-app.jar"
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    archiveFileName.set("fido-server-conformance-test-app.jar")
 }
 
 dependencies {
     implementation(libs.webauthn4j.spring.security.core)
     implementation(libs.webauthn4j.spring.security.metadata)
+    implementation(libs.webauthn4j.core)
 
     // Spring Framework
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-cbor")
@@ -38,27 +41,26 @@ dependencies {
     //Others
     implementation("org.slf4j:jcl-over-slf4j")
     implementation(libs.modelmapper)
-    implementation('org.flywaydb:flyway-core')
-    runtimeOnly('com.h2database:h2')
-    runtimeOnly('com.mysql:mysql-connector-j')
+    implementation("org.flywaydb:flyway-core")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("com.mysql:mysql-connector-j")
     runtimeOnly(libs.log4jdbc.remix)
 
     //Test
-    testImplementation('org.projectlombok:lombok')
+    testImplementation("org.projectlombok:lombok")
 
     testImplementation(libs.webauthn4j.spring.security.test)
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-    testImplementation('org.springframework.security:spring-security-test')
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
 
-    testImplementation('junit:junit')
-    testImplementation('org.mockito:mockito-core')
-    testImplementation('org.assertj:assertj-core')
+    testImplementation("junit:junit")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.assertj:assertj-core")
     testImplementation(libs.dbunit)
     testImplementation(libs.spring.test.dbunit)
-
 }
 
 sonar {
-    skipProject = true
+    isSkipProject = true
 }

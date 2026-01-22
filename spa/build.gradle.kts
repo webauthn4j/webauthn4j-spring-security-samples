@@ -14,23 +14,28 @@
  * limitations under the License.
  */
 
-apply plugin: 'org.springframework.boot'
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
-group 'com.webauthn4j'
+plugins {
+    id("org.springframework.boot")
+}
+
+group = "com.webauthn4j"
 description = "WebAuthn4J Spring Security Angular Sample"
 
-bootJar {
-    archiveFileName = "webauthn4j-spring-security-sample-spa.jar"
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    archiveFileName.set("webauthn4j-spring-security-sample-spa.jar")
 }
 
 dependencies {
     implementation(libs.webauthn4j.spring.security.core)
-    implementation project(':lib:spa-angular-client')
+    implementation(libs.webauthn4j.core)
+    implementation(project(":lib:spa-angular-client"))
 
     // Spring Framework
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-cbor")
@@ -40,38 +45,37 @@ dependencies {
     //Others
     implementation("org.slf4j:jcl-over-slf4j")
     implementation(libs.modelmapper)
-    implementation('org.flywaydb:flyway-core')
-    runtimeOnly('com.h2database:h2')
-    runtimeOnly('com.mysql:mysql-connector-j')
+    implementation("org.flywaydb:flyway-core")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("com.mysql:mysql-connector-j")
     runtimeOnly(libs.log4jdbc.remix)
 
     //Test
     testImplementation(libs.webauthn4j.spring.security.test)
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-    testImplementation('org.springframework.security:spring-security-test')
-    testImplementation('junit:junit')
-    testImplementation('org.mockito:mockito-core')
-    testImplementation('org.assertj:assertj-core')
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("junit:junit")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.assertj:assertj-core")
     testImplementation(libs.dbunit)
     testImplementation(libs.spring.test.dbunit)
     testImplementation(libs.webdrivermanager)
     testImplementation(libs.selenium.java)
-
 }
 
-test {
+tasks.test {
     testLogging {
-        events "passed", "skipped", "failed" //, "standardOut", "standardError"
+        events(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED) //, "standardOut", "standardError"
 
-        showExceptions true
-        exceptionFormat "full"
-        showCauses true
-        showStackTraces true
+        showExceptions = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showCauses = true
+        showStackTraces = true
 
         showStandardStreams = false
     }
 }
 
 sonar {
-    skipProject = true
+    isSkipProject = true
 }

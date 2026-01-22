@@ -1,0 +1,58 @@
+/*
+ * Copyright 2002-2019 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+    alias(libs.plugins.sonarqube)
+    alias(libs.plugins.asciidoctor)
+    alias(libs.plugins.spring.boot) apply false
+}
+
+group = "com.webauthn4j"
+version = property("webAuthn4JSpringSecurityVersion") as String
+
+repositories {
+    mavenCentral() //for jruby used in asciidoctorj
+}
+
+val rootLibs = libs
+
+subprojects {
+
+    apply(plugin = "java")
+
+    configure<JavaPluginExtension> {
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
+
+    tasks.withType<JavaCompile> {
+        options.compilerArgs.add("-Xlint:unchecked")
+        options.compilerArgs.add("-Werror")
+    }
+
+    repositories {
+        mavenCentral()
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
+        maven(url = "https://jitpack.io")
+    }
+
+
+    dependencies {
+        // BOM
+        "implementation"(platform(rootLibs.spring.boot.dependencies))
+        "implementation"(platform(rootLibs.spring.security.bom))
+    }
+
+}
