@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-include 'lib:spa-angular-client'
-include 'spa'
-include 'fido-server-conformance-test-app'
-include 'mpa'
+include("lib:spa-angular-client")
+include("spa")
+include("fido-server-conformance-test-app")
+include("mpa")
