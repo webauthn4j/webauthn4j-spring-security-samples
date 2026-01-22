@@ -21,7 +21,6 @@ plugins {
 }
 
 group = "com.webauthn4j"
-version = property("webAuthn4JSpringSecurityVersion") as String
 
 description = "WebAuthn4J Spring Security Sample SPA angular client library"
 

@@ -36,13 +36,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
 
         registry.addResourceHandler("/angular/**", "/angular/", "/angular")
-                .addResourceLocations("classpath:/static/angular/index.html")
+                .addResourceLocations("classpath:/static/angular/")
                 .resourceChain(true)
                 // Override PathResourceResolver to serve a specific file to Angular urls.
                 .addResolver(new PathResourceResolver() {
                     @Override
-                    protected Resource getResource(String resourcePath, Resource location) {
-                        return location.exists() && location.isReadable() ? location : null;
+                    protected Resource getResource(String resourcePath, Resource location) throws java.io.IOException {
+                        Resource resource = location.createRelative(resourcePath);
+                        if (resource.exists() && resource.isReadable()) {
+                            return resource;
+                        }
+                        return location.createRelative("index.html");
                     }
                 });
     }
