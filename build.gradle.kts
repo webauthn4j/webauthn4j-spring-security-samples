@@ -21,7 +21,6 @@ plugins {
 }
 
 group = "com.webauthn4j"
-version = property("webAuthn4JSpringSecurityVersion") as String
 
 repositories {
     mavenCentral() //for jruby used in asciidoctorj

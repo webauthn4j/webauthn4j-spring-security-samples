@@ -1,6 +1,6 @@
 [versions]
 # Project versions
-webauthn4j-spring-security = "0.10.0.RELEASE"
+webauthn4j-spring-security = "0.11.2.RELEASE"
 
 # Spring
 spring-boot = "3.3.4"

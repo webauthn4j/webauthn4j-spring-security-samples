@@ -130,7 +130,7 @@ public class WebSecurityConfig {
 
         http.headers(headers -> {
             // 'publickey-credentials-get *' allows getting WebAuthn credentials to all nested browsing contexts (iframes) regardless of their origin.
-            headers.permissionsPolicy(config -> config.policy("publickey-credentials-get *"));
+            headers.permissionsPolicyHeader(config -> config.policy("publickey-credentials-get *"));
             // Disable "X-Frame-Options" to allow cross-origin iframe access
             headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable);
         });
