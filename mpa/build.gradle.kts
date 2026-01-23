@@ -38,7 +38,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-cbor")
 
-    implementation(libs.hibernate.validator)
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 
     //Others
     implementation("org.slf4j:jcl-over-slf4j")

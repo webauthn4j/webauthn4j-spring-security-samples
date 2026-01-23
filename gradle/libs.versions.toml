@@ -10,7 +10,6 @@ spring-security = "6.0.2"
 webauthn4j = "0.30.2.RELEASE"
 
 # Third-party libraries
-hibernate-validator = "8.0.1.Final"
 thymeleaf = "3.0.4.RELEASE"
 modelmapper = "3.2.6"
 log4jdbc = "0.2.7"
@@ -49,7 +48,6 @@ webauthn4j-spring-security-metadata = { module = "com.webauthn4j:webauthn4j-spri
 webauthn4j-spring-security-test = { module = "com.webauthn4j:webauthn4j-spring-security-test", version.ref = "webauthn4j-spring-security" }
 
 # Third-party libraries
-hibernate-validator = { module = "org.hibernate:hibernate-validator", version.ref = "hibernate-validator" }
 thymeleaf-testing = { module = "org.thymeleaf:thymeleaf-testing", version.ref = "thymeleaf" }
 modelmapper = { module = "org.modelmapper:modelmapper", version.ref = "modelmapper" }
 log4jdbc-remix = { module = "org.lazyluke:log4jdbc-remix", version.ref = "log4jdbc" }
