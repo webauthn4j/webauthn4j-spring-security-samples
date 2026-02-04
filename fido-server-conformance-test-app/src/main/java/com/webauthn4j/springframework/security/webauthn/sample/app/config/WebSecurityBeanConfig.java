@@ -16,9 +16,10 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.app.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.NamedType;
-import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.jsontype.NamedType;
+import tools.jackson.dataformat.cbor.CBORMapper;
 import com.webauthn4j.WebAuthnManager;
 import com.webauthn4j.converter.util.ObjectConverter;
 import com.webauthn4j.metadata.FidoMDS3MetadataBLOBProvider;
@@ -217,19 +218,22 @@ public class WebSecurityBeanConfig {
     // initialize DaoAuthenticationProvider manually instead of using DaoAuthenticationConfigurer.
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         return daoAuthenticationProvider;
     }
 
     @Bean
     public ObjectConverter objectConverter() {
-        ObjectMapper jsonMapper = new ObjectMapper();
-        jsonMapper.registerModule(new WebAuthnMetadataJSONModule());
-        jsonMapper.registerSubtypes(new NamedType(ExampleExtensionClientInput.class, ExampleExtensionClientInput.ID));
-        ObjectMapper cborMapper = new ObjectMapper(new CBORFactory());
-        cborMapper.registerSubtypes(new NamedType(ExampleExtensionAuthenticatorOutput.class, ExampleExtensionAuthenticatorOutput.ID));
+        JsonMapper jsonMapper = JsonMapper.builder()
+            .addModule(new WebAuthnMetadataJSONModule())
+            .registerSubtypes(new NamedType(ExampleExtensionClientInput.class, ExampleExtensionClientInput.ID))
+            .build();
+        
+        CBORMapper cborMapper = CBORMapper.builder()
+            .registerSubtypes(new NamedType(ExampleExtensionAuthenticatorOutput.class, ExampleExtensionAuthenticatorOutput.ID))
+            .build();
+
         return new ObjectConverter(jsonMapper, cborMapper);
     }
 

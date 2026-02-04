@@ -16,22 +16,26 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.app.util.jackson.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.deser.std.StdDeserializer;
 import com.webauthn4j.springframework.security.converter.Base64UrlStringToAttestationObjectConverter;
 import com.webauthn4j.springframework.security.webauthn.sample.app.api.AttestationObjectForm;
-import org.springframework.boot.jackson.JsonComponent;
-
-import java.io.IOException;
+import org.springframework.stereotype.Component;
 
 /**
  * Jackson Deserializer for {@link AttestationObjectForm}
  */
-@JsonComponent
+@Component
 public class AuthenticatorObjectFormDeserializer extends StdDeserializer<AttestationObjectForm> {
 
     private final Base64UrlStringToAttestationObjectConverter base64UrlStringToAttestationObjectConverter;
+
+    @SuppressWarnings("unused")
+    public AuthenticatorObjectFormDeserializer() {
+        super(AttestationObjectForm.class);
+        this.base64UrlStringToAttestationObjectConverter = com.webauthn4j.springframework.security.webauthn.sample.app.config.ApplicationContextHolder.getBean(Base64UrlStringToAttestationObjectConverter.class);
+    }
 
     public AuthenticatorObjectFormDeserializer(Base64UrlStringToAttestationObjectConverter base64UrlStringToAttestationObjectConverter) {
         super(AttestationObjectForm.class);
@@ -42,7 +46,7 @@ public class AuthenticatorObjectFormDeserializer extends StdDeserializer<Attesta
      * {@inheritDoc}
      */
     @Override
-    public AttestationObjectForm deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public AttestationObjectForm deserialize(JsonParser p, DeserializationContext ctxt) {
         String value = p.getValueAsString();
         AttestationObjectForm result = new AttestationObjectForm();
         result.setAttestationObject(base64UrlStringToAttestationObjectConverter.convert(value));

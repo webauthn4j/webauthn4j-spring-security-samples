@@ -16,7 +16,7 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.app.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.webauthn4j.springframework.security.webauthn.sample.app.config.AppConfig;
 import com.webauthn4j.springframework.security.webauthn.sample.app.service.ProfileAppService;
 import com.webauthn4j.springframework.security.webauthn.sample.domain.entity.AuthorityEntity;
@@ -26,17 +26,21 @@ import com.webauthn4j.springframework.security.webauthn.sample.test.app.config.T
 import com.webauthn4j.springframework.security.webauthn.sample.test.infrastructure.config.InfrastructureMockConfig;
 import com.webauthn4j.util.Base64UrlUtil;
 import com.webauthn4j.util.UUIDUtil;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
+import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Collections;
 import java.util.UUID;
@@ -52,18 +56,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ProfileController.class)
+@SpringBootTest
 @Import(value = {TestSecurityConfig.class, AppConfig.class, InfrastructureMockConfig.class})
 public class ProfileControllerTest {
 
     @Autowired
+    private WebApplicationContext context;
+
     private MockMvc mvc;
 
-    @MockBean
+    @MockitoBean
     ProfileAppService profileAppService;
 
     @Autowired
     ObjectMapper objectMapper;
+
+    @Before
+    public void setup() {
+        mvc = MockMvcBuilders
+                .webAppContextSetup(context)
+                .apply(SecurityMockMvcConfigurers.springSecurity())
+                .build();
+    }
 
     @Test
     @WithMockWebAuthnUser(id = 1, firstName = "John", lastName = "Doe", emailAddress = "john.doe@example.com", authorities = {"ROLE_USER"}, authenticators = {})

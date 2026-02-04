@@ -18,7 +18,7 @@ package com.webauthn4j.springframework.security.webauthn.sample.test.app.config;
 
 import com.webauthn4j.springframework.security.webauthn.sample.app.config.WebSecurityConfig;
 import com.webauthn4j.springframework.security.webauthn.sample.domain.component.UserManagerImpl;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 public class TestSecurityConfig {
 
-    @MockBean
+    @MockitoBean
     UserManagerImpl userManager;
 
 }

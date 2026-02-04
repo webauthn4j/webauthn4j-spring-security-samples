@@ -18,10 +18,13 @@ package com.webauthn4j.springframework.security.webauthn.sample.app.api;
 
 
 import com.webauthn4j.data.client.CollectedClientData;
+import com.webauthn4j.springframework.security.webauthn.sample.app.util.jackson.deserializer.CollectedClientDataDeserializer;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
+@JsonDeserialize(using = CollectedClientDataDeserializer.class)
 public class CollectedClientDataForm {
 
     @NotNull

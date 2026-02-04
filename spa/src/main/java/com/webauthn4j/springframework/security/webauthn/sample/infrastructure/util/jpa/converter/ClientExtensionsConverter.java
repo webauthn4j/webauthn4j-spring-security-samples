@@ -16,7 +16,7 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.infrastructure.util.jpa.converter;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import tools.jackson.core.type.TypeReference;
 import com.webauthn4j.converter.util.JsonConverter;
 import com.webauthn4j.converter.util.ObjectConverter;
 import com.webauthn4j.data.extension.client.RegistrationExtensionClientOutput;

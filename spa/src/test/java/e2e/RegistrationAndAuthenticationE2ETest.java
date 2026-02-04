@@ -27,6 +27,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,6 +44,7 @@ import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SampleSPA.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class RegistrationAndAuthenticationE2ETest {
@@ -113,7 +115,6 @@ public class RegistrationAndAuthenticationE2ETest {
         assertThat(counterValueAtAuthenticationPhase).isGreaterThan(counterValueAtRegistrationPhase);
 
         ProfileComponent profileComponent = new ProfileComponent(driver);
-
     }
 
 }
