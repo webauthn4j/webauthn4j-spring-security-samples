@@ -16,8 +16,9 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.app.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.dataformat.cbor.CBORMapper;
 import com.webauthn4j.WebAuthnManager;
 import com.webauthn4j.converter.util.ObjectConverter;
 import com.webauthn4j.metadata.converter.jackson.WebAuthnMetadataJSONModule;
@@ -59,10 +60,11 @@ public class WebSecurityBeanConfig {
 
     @Bean
     public ObjectConverter objectConverter(){
-        ObjectMapper jsonMapper = new ObjectMapper();
-        jsonMapper.registerModule(new WebAuthnMetadataJSONModule());
-        jsonMapper.registerModule(new WebAuthn4JSpringSecurityJSONModule());
-        ObjectMapper cborMapper = new ObjectMapper(new CBORFactory());
+        JsonMapper jsonMapper = JsonMapper.builder()
+            .addModule(new WebAuthnMetadataJSONModule())
+            .addModule(new WebAuthn4JSpringSecurityJSONModule())
+            .build();
+        CBORMapper cborMapper = CBORMapper.builder().build();
         return new ObjectConverter(jsonMapper, cborMapper);
     }
 

@@ -39,7 +39,7 @@ public class ServerEndpointFilterUtilTest {
 
         assertThat(response.getStatus()).isEqualTo(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         assertThat(response.getContentType()).isEqualTo("application/json");
-        assertThat(response.getContentAsString()).isEqualTo("{\"status\":\"failed\",\"errorMessage\":\"The server encountered an internal error\"}");
+        assertThat(response.getContentAsString()).isEqualTo("{\"errorMessage\":\"The server encountered an internal error\",\"status\":\"failed\"}");
     }
 
     @Test
@@ -51,6 +51,6 @@ public class ServerEndpointFilterUtilTest {
 
         assertThat(response.getStatus()).isEqualTo(HttpServletResponse.SC_FORBIDDEN);
         assertThat(response.getContentType()).isEqualTo("application/json");
-        assertThat(response.getContentAsString()).isEqualTo("{\"status\":\"failed\",\"errorMessage\":\"Anonymous access is prohibited\"}");
+        assertThat(response.getContentAsString()).isEqualTo("{\"errorMessage\":\"Anonymous access is prohibited\",\"status\":\"failed\"}");
     }
 }

@@ -16,8 +16,6 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.domain.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.*;
@@ -35,8 +33,7 @@ public class AuthorityEntity implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "r_user_authority",
             joinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")},
@@ -44,8 +41,7 @@ public class AuthorityEntity implements GrantedAuthority {
     )
     private List<UserEntity> users;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "r_group_authority",
             joinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")},

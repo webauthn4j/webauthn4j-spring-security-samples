@@ -16,8 +16,6 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.domain.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
@@ -39,8 +37,7 @@ public class UserEntity implements UserDetails {
     private String lastName;
     private String emailAddress;
 
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "r_user_group",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
@@ -49,8 +46,7 @@ public class UserEntity implements UserDetails {
     )
     private List<GroupEntity> groups;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "r_user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

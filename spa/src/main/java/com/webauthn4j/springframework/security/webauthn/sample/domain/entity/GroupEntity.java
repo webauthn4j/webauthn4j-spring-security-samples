@@ -16,9 +16,6 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.domain.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -43,8 +40,7 @@ public class GroupEntity implements Serializable {
     public GroupEntity() {
     }
 
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "r_user_group",
             joinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "id")},
@@ -52,8 +48,7 @@ public class GroupEntity implements Serializable {
     )
     private List<UserEntity> users;
 
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "r_group_authority",
             joinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "id")},

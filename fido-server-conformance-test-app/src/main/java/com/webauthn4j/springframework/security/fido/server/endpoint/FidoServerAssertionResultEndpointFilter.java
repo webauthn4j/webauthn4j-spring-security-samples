@@ -16,7 +16,7 @@
 
 package com.webauthn4j.springframework.security.fido.server.endpoint;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import tools.jackson.core.type.TypeReference;
 import com.webauthn4j.converter.CollectedClientDataConverter;
 import com.webauthn4j.converter.exception.DataConversionException;
 import com.webauthn4j.converter.util.JsonConverter;
@@ -33,7 +33,6 @@ import com.webauthn4j.util.Base64UrlUtil;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.Assert;
 
@@ -80,11 +79,11 @@ public class FidoServerAssertionResultEndpointFilter extends AbstractAuthenticat
     }
 
     public FidoServerAssertionResultEndpointFilter(ObjectConverter objectConverter, ServerPropertyProvider serverPropertyProvider, String defaultFilterProcessesUrl) {
-        this(objectConverter, serverPropertyProvider, new AntPathRequestMatcher(defaultFilterProcessesUrl, HttpMethod.POST.name()));
+        this(objectConverter, serverPropertyProvider, request -> defaultFilterProcessesUrl.equals(request.getServletPath()) && HttpMethod.POST.name().equals(request.getMethod()));
     }
 
     public FidoServerAssertionResultEndpointFilter(ObjectConverter objectConverter, ServerPropertyProvider serverPropertyProvider) {
-        this(objectConverter, serverPropertyProvider, new AntPathRequestMatcher(FILTER_URL, HttpMethod.POST.name()));
+        this(objectConverter, serverPropertyProvider, request -> FILTER_URL.equals(request.getServletPath()) && HttpMethod.POST.name().equals(request.getMethod()));
     }
 
     @Override

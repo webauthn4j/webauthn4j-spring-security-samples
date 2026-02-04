@@ -16,22 +16,26 @@
 
 package com.webauthn4j.springframework.security.webauthn.sample.app.util.jackson.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.deser.std.StdDeserializer;
 import com.webauthn4j.springframework.security.converter.Base64UrlStringToCollectedClientDataConverter;
 import com.webauthn4j.springframework.security.webauthn.sample.app.api.CollectedClientDataForm;
-import org.springframework.boot.jackson.JsonComponent;
-
-import java.io.IOException;
+import org.springframework.stereotype.Component;
 
 /**
  * Jackson Deserializer for {@link CollectedClientDataForm}
  */
-@JsonComponent
+@Component
 public class CollectedClientDataDeserializer extends StdDeserializer<CollectedClientDataForm> {
 
     private final Base64UrlStringToCollectedClientDataConverter base64UrlStringToCollectedClientDataConverter;
+
+    @SuppressWarnings("unused")
+    public CollectedClientDataDeserializer() {
+        super(CollectedClientDataForm.class);
+        this.base64UrlStringToCollectedClientDataConverter = com.webauthn4j.springframework.security.webauthn.sample.app.config.ApplicationContextHolder.getBean(Base64UrlStringToCollectedClientDataConverter.class);
+    }
 
     public CollectedClientDataDeserializer(Base64UrlStringToCollectedClientDataConverter base64UrlStringToCollectedClientDataConverter) {
         super(CollectedClientDataForm.class);
@@ -42,7 +46,7 @@ public class CollectedClientDataDeserializer extends StdDeserializer<CollectedCl
      * {@inheritDoc}
      */
     @Override
-    public CollectedClientDataForm deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public CollectedClientDataForm deserialize(JsonParser p, DeserializationContext ctxt) {
         String value = p.getValueAsString();
         CollectedClientDataForm result = new CollectedClientDataForm();
         result.setCollectedClientData(base64UrlStringToCollectedClientDataConverter.convert(value));

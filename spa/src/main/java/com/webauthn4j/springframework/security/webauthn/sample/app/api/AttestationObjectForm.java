@@ -18,6 +18,8 @@ package com.webauthn4j.springframework.security.webauthn.sample.app.api;
 
 
 import com.webauthn4j.data.attestation.AttestationObject;
+import com.webauthn4j.springframework.security.webauthn.sample.app.util.jackson.deserializer.AuthenticatorObjectFormDeserializer;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +27,7 @@ import jakarta.validation.constraints.NotNull;
 /**
  * Form for AttestationObject
  */
+@JsonDeserialize(using = AuthenticatorObjectFormDeserializer.class)
 public class AttestationObjectForm {
 
     @NotNull
