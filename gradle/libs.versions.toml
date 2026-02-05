@@ -16,7 +16,7 @@ log4jdbc = "0.2.7"
 
 # WebJars
 bootstrap = "5.3.8"
-jquery = "3.7.1"
+jquery = "4.0.0"
 font-awesome = "7.1.0"
 webjars-locator = "0.52"
 
