@@ -4,7 +4,7 @@ webauthn4j-spring-security = "0.12.0.RELEASE"
 
 # Spring
 spring-boot = "4.0.2"
-spring-security = "7.0.2"
+spring-security = "7.0.3"
 
 # WebAuthn4J
 webauthn4j = "0.31.0.RELEASE"
