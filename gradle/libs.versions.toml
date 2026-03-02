@@ -7,7 +7,7 @@ spring-boot = "4.0.3"
 spring-security = "7.0.3"
 
 # WebAuthn4J
-webauthn4j = "0.31.0.RELEASE"
+webauthn4j = "0.31.1.RELEASE"
 
 # Third-party libraries
 thymeleaf = "3.0.4.RELEASE"
