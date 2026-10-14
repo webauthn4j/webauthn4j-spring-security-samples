@@ -11,7 +11,7 @@ webauthn4j = "0.31.11.RELEASE"
 
 # Third-party libraries
 thymeleaf = "3.0.4.RELEASE"
-modelmapper = "3.2.6"
+modelmapper = "3.2.7"
 log4jdbc = "0.2.7"
 
 # WebJars
